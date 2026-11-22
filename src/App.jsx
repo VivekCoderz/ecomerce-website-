@@ -1,28 +1,19 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
-import heroImg from "./assets/hero.png";
 import "./App.css";
-import Card from "./components/Card";
 import Navbar from "./components/Navbar";
 
-import cardData from "./data/cardData.js";
 import products from "./data/products.js";
 
 import { useState } from "react";
 import IndiviualCard from "./components/IndiviualCard.jsx";
 
 function App() {
-  const cartItems = []
-
-  const [quantity, setQuantity] = useState(0);
   const [Products, setProducts] = useState(products);
   const [cart, setCart] = useState([]);
 
   const addCart = (id)=>{
-    const update = Products.filter((pr)=>pr.id==id)
-    // cartItems.unshift(update)
+    // find() returns the product object; filter() returned a one-element array
+    const update = Products.find((pr)=>pr.id==id)
     setCart([...cart,update])
-    console.log(cart)
   }
 
   
@@ -30,8 +21,11 @@ function App() {
   const updateCardQantity = (id,op=1) => {
     console.log(id)
     const update = Products.map((pr)=>{
-      if(pr.id==id && pr.stoke>pr.quantity){
-        return {...pr,quantity : pr.quantity+op}
+      const next = pr.quantity + op
+      // Stay within 0..stock. The old check (stoke > quantity) also blocked
+      // the "-" button once quantity reached the stock limit.
+      if(pr.id==id && next >= 0 && next <= pr.stoke){
+        return {...pr,quantity : next}
       }
       return pr
     })
