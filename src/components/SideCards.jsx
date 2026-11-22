@@ -1,6 +1,6 @@
-import React from 'react'
 
-const SideCards = ({}) => {
+
+const SideCards = () => {
   return (
     <div>
         <img src="" alt="" />

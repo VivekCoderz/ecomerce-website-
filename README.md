@@ -1,17 +1,40 @@
-# React + Vite
+# E-commerce Website (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A front-end practice project: a product listing page for an online store, built with React and Vite. Product data is stored locally in `src/data/products.js` (10 sample products across smartphones, laptops, laptop accessories, books and fashion); there is no backend.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Navbar with logo, search box and Home / About / Contact links (the search box and links are not wired up yet)
+- Responsive grid of product cards, each showing image, description, review count, price, discount, MRP and stock
+- Per-product quantity selector (`-` / `+`) kept between 0 and the available stock
+- "Add To Cart" button that adds the product to the cart state in `App.jsx` (there is no cart page yet)
 
-## React Compiler
+## Tech stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite
+- ESLint
+- Plain inline styles + CSS
 
-## Expanding the ESLint configuration
+## Project structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-"# ecomerce-website-" 
+```
+src/
+  App.jsx                    # page layout, product + cart state
+  components/
+    Navbar.jsx
+    IndiviualCard.jsx        # product card used on the page
+    Card.jsx, SideCards.jsx  # not used yet
+  data/
+    products.js              # product list shown on the page
+    cardData.js              # data for Card.jsx (not used yet)
+```
+
+## Getting started
+
+```bash
+npm install
+npm run dev       # start the dev server (http://localhost:5173)
+npm run build     # production build into dist/
+npm run lint      # run ESLint
+```
